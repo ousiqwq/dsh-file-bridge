@@ -19,7 +19,7 @@
 从 [Releases](https://github.com/ousiqwq/dsh-file-bridge/releases) 下载插件包，然后运行：
 
 ```sh
-dsh plugin --profile web add ./dsh-plugin-file-bridge-0.1.0.tgz
+dsh plugin --profile web add ./dsh-plugin-file-bridge-0.1.1.tgz
 ```
 
 在插件管理中启用 `dsh-plugin-file-bridge`，刷新浏览器。若当前运行实例尚未重新加载插件配置，重启自己的 Harness 服务后刷新。
@@ -55,6 +55,10 @@ DSH_TEST_URL=http://your-harness-host:3080 npm run test:browser
 ```
 
 该测试需要与服务器共享测试目录，创建纯测试文件和一个空白测试会话，不调用模型，结束后归档自己创建的会话；如提供 `DSH_TEST_SESSION`，则复用该会话且不归档它。测试会修改测试浏览器中的选中页面。脚本支持 `PLAYWRIGHT_MODULE` 和 `PLAYWRIGHT_CHROMIUM_EXECUTABLE` 以复用已有测试工具。Playwright 仅用于开发测试，不随插件分发。
+
+### 0.1.1 样式调整
+
+下载按钮使用原生主题圆角、边框、字体和悬停颜色。无法预览时的按钮与原生「打开」保持相同的 36px 高度和 14px 字体；工具栏图标与原生刷新按钮保持相同的 28px 控件和 15px 图标尺寸。下载图标和提示浮层直接使用宿主 UI 组件。
 
 ### 0.1.0 验证记录
 

@@ -2,6 +2,7 @@ window.__ModuleLoader__.load({
   id: 'dsh-plugin-file-bridge',
   factory: require => {
     const React = require('react'), h = React.createElement;
+    const { IconDownloadOutlineRegular, Tooltip } = require('@deepseek-ai/dsh-client-ui-primitives');
     const NS = 'fileBridge';
     const zh = {
       download: '下载到本机', preparing: '正在准备下载…', started: '已交给浏览器下载，请查看下载列表',
@@ -22,18 +23,15 @@ window.__ModuleLoader__.load({
       auth: 'Connection or login expired; reload the page and retry',
     };
     const css = `
-.dfb-action{position:relative;display:inline-flex;flex:none;align-items:center;max-width:100%;color:var(--dsw-alias-label-primary,inherit)}
-.dfb-button{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:28px;min-height:28px;padding:5px;border:0;border-radius:6px;background:transparent;color:var(--dsw-alias-label-secondary,inherit);font:inherit;font-size:12px;cursor:pointer}
-.dfb-button:hover:not(:disabled){color:var(--dsw-alias-label-primary,inherit);background:var(--dsw-alias-interactive-bg-hover,rgba(128,128,128,.16))}
-.dfb-button:focus-visible{outline:2px solid #80aaff;outline-offset:2px}.dfb-button:disabled{opacity:.55;cursor:wait}
-.dfb-button svg{width:16px;height:16px;flex:none}.dfb-action[data-expanded] .dfb-button{border:1px solid var(--dsw-alias-border-l2,#555);padding:7px 12px;min-height:34px}
+.dfb-action{position:relative;display:inline-flex;flex:none;align-self:center;align-items:center;max-width:100%;font-family:var(--dsw-font-family);color:var(--dsw-alias-label-primary)}
+.dfb-button{box-sizing:border-box;display:inline-flex;flex:none;align-items:center;justify-content:center;width:28px;height:28px;padding:6px;border:0;border-radius:var(--dsw-radius-sm);background:transparent;color:var(--dsw-alias-label-secondary);font:inherit;line-height:1;cursor:pointer}
+.dfb-button:hover:not(:disabled),.dfb-button:focus-visible{color:var(--dsw-alias-label-primary);background:var(--dsw-alias-interactive-bg-hover)}
+.dfb-button:disabled{cursor:default}.dfb-button svg{width:15px;height:15px;flex:none}
+.dfb-action[data-expanded] .dfb-button{width:auto;height:36px;gap:6px;padding:6px 14px;border:.5px solid var(--dsw-alias-border-l2);border-radius:var(--dsw-radius-md);color:var(--dsw-alias-label-primary);font-size:14px;line-height:16px;white-space:nowrap}
+.dfb-action[data-expanded] .dfb-button svg{width:18px;height:18px}
 .dfb-error{position:absolute;z-index:40;top:calc(100% + 6px);right:0;width:max-content;max-width:min(260px,65vw);padding:8px 10px;border:1px solid var(--dsw-alias-border-l2,#555);border-radius:8px;background:var(--dsw-alias-bg-module-platform,#292a2b);color:var(--dsw-alias-label-primary,#fff);font-size:12px;line-height:1.5;overflow-wrap:anywhere;box-shadow:0 4px 16px #0003}
 .dfb-live{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 `;
-    function Icon() {
-      return h('svg', { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.8, strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': true },
-        h('path', { d: 'M12 3v12m-5-5 5 5 5-5M5 16v4h14v-4' }));
-    }
     function DownloadAction({ sessionId, absolutePath, t, expanded = false }) {
       const [busy, setBusy] = React.useState(false), [message, setMessage] = React.useState(''), [error, setError] = React.useState('');
       const active = React.useRef(null);
@@ -68,9 +66,10 @@ window.__ModuleLoader__.load({
         }
       }
       return h('span', { className: 'dfb-action', 'data-expanded': expanded || undefined },
-        h('button', { className: 'dfb-button', type: 'button', onClick: download, disabled: busy || !sessionId,
-          title: busy ? t('preparing') : t('download'), 'aria-label': t('download'), 'aria-busy': busy },
-          h(Icon), expanded && h('span', null, busy ? t('preparing') : t('download'))),
+        h(Tooltip, { portal: true, label: busy ? t('preparing') : t('download'), side: 'bottom', delayMs: 500 },
+          h('button', { className: 'dfb-button', type: 'button', onClick: download, disabled: busy || !sessionId,
+            'aria-label': t('download'), 'aria-busy': busy },
+            h(IconDownloadOutlineRegular, { size: expanded ? 18 : 15 }), expanded && h('span', null, busy ? t('preparing') : t('download')))),
         h('span', { className: 'dfb-live', role: 'status', 'aria-live': 'polite' }, message),
         error && h('span', { className: 'dfb-error', role: 'alert' }, error));
     }
