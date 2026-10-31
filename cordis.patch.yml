@@ -1,0 +1,3 @@
+- insert:
+    - id: file-bridge
+      name: dsh-plugin-file-bridge
