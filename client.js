@@ -42,7 +42,7 @@ window.__ModuleLoader__.load({
       async function download() {
         if (active.current) return;
         const controller = new AbortController(); active.current = controller;
-        setBusy(true); setError(''); setMessage(t('preparing'));
+        setBusy(true); setError(''); setMessage('preparing');
         try {
           const response = await fetch('/api/file-bridge.prepare', {
             method: 'POST', credentials: 'same-origin', cache: 'no-store', signal: controller.signal,
@@ -57,10 +57,10 @@ window.__ModuleLoader__.load({
           link.href = url.href; link.download = result.filename; link.rel = 'noreferrer'; link.hidden = true;
           document.body.appendChild(link);
           try { link.click(); } finally { link.remove(); }
-          setMessage(t('started'));
+          setMessage('started');
         } catch (cause) {
           if (controller.signal.aborted) return;
-          setMessage(''); setError(t(Object.hasOwn(zh, cause.message) ? cause.message : 'unavailable'));
+          setMessage(''); setError(Object.hasOwn(zh, cause.message) ? cause.message : 'unavailable');
         } finally {
           if (active.current === controller) { active.current = null; setBusy(false); }
         }
@@ -70,8 +70,8 @@ window.__ModuleLoader__.load({
           h('button', { className: 'dfb-button', type: 'button', onClick: download, disabled: busy || !sessionId,
             'aria-label': t('download'), 'aria-busy': busy },
             h(IconDownloadOutlineRegular, { size: expanded ? 18 : 15 }), expanded && h('span', null, busy ? t('preparing') : t('download')))),
-        h('span', { className: 'dfb-live', role: 'status', 'aria-live': 'polite' }, message),
-        error && h('span', { className: 'dfb-error', role: 'alert' }, error));
+        h('span', { className: 'dfb-live', role: 'status', 'aria-live': 'polite' }, message ? t(message) : ''),
+        error && h('span', { className: 'dfb-error', role: 'alert' }, t(error)));
     }
     return {
       inject: ['slots', 'locale'],

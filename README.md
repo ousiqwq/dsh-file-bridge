@@ -6,6 +6,8 @@
 
 插件包：`dsh-plugin-file-bridge`
 
+界面接入 DSH 原生 i18n，实时跟随 DSH 的语言设置。内置中英文词典；其他界面语言按 DSH 的规则回退到英文。
+
 ## 功能
 
 - **预览工具栏下载**：打开文件后，点击右侧工具栏的下载图标。
@@ -31,7 +33,7 @@
 已验证 DeepSeek Harness **0.2.1-rc.3 / 0.2.1-rc.5 / 0.2.2-rc.2** 的 Web profile。
 
 ```bash
-dsh plugin --profile web add https://github.com/ousiqwq/dsh-file-bridge/releases/download/v0.1.2/dsh-plugin-file-bridge-0.1.2.tgz
+dsh plugin --profile web add https://github.com/ousiqwq/dsh-file-bridge/releases/download/v0.2.0/dsh-plugin-file-bridge-0.2.0.tgz
 ```
 
 在插件管理中启用插件并刷新页面。如果运行实例尚未加载新配置，重启 DSH 后刷新。安装包见 [Releases](https://github.com/ousiqwq/dsh-file-bridge/releases)。

@@ -6,6 +6,8 @@ Add a **Download to this device** action to DeepSeek Harness in a remote browser
 
 Package: `dsh-plugin-file-bridge`.
 
+The interface uses DSH native i18n and follows language changes immediately. Chinese and English dictionaries are included; other interface languages use the native English fallback.
+
 ## Features
 
 - **Toolbar downloads:** open a file and use the download icon in the preview toolbar.
@@ -31,7 +33,7 @@ Read a document in its native viewer and download it from the toolbar.
 Verified with the Web profile of DeepSeek Harness **0.2.1-rc.3 / 0.2.1-rc.5 / 0.2.2-rc.2**.
 
 ```bash
-dsh plugin --profile web add https://github.com/ousiqwq/dsh-file-bridge/releases/download/v0.1.2/dsh-plugin-file-bridge-0.1.2.tgz
+dsh plugin --profile web add https://github.com/ousiqwq/dsh-file-bridge/releases/download/v0.2.0/dsh-plugin-file-bridge-0.2.0.tgz
 ```
 
 Enable the plugin in the plugin manager and refresh the page. If the running instance has not loaded the new configuration, restart DSH and refresh. Packages are available from [Releases](https://github.com/ousiqwq/dsh-file-bridge/releases).
