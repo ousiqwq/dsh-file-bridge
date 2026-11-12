@@ -28,10 +28,10 @@ Read a document in its native viewer and download it from the toolbar.
 
 ## Installation
 
-Verified with the Web profile of DeepSeek Harness **0.2.1-rc.3 / 0.2.1-rc.5**.
+Verified with the Web profile of DeepSeek Harness **0.2.1-rc.3 / 0.2.1-rc.5 / 0.2.2-rc.2**.
 
 ```bash
-dsh plugin --profile web add https://github.com/ousiqwq/dsh-file-bridge/releases/download/v0.1.1/dsh-plugin-file-bridge-0.1.1.tgz
+dsh plugin --profile web add https://github.com/ousiqwq/dsh-file-bridge/releases/download/v0.1.2/dsh-plugin-file-bridge-0.1.2.tgz
 ```
 
 Enable the plugin in the plugin manager and refresh the page. If the running instance has not loaded the new configuration, restart DSH and refresh. Packages are available from [Releases](https://github.com/ousiqwq/dsh-file-bridge/releases).

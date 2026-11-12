@@ -28,10 +28,10 @@
 
 ## 安装
 
-已验证 DeepSeek Harness **0.2.1-rc.3 / 0.2.1-rc.5** 的 Web profile。
+已验证 DeepSeek Harness **0.2.1-rc.3 / 0.2.1-rc.5 / 0.2.2-rc.2** 的 Web profile。
 
 ```bash
-dsh plugin --profile web add https://github.com/ousiqwq/dsh-file-bridge/releases/download/v0.1.1/dsh-plugin-file-bridge-0.1.1.tgz
+dsh plugin --profile web add https://github.com/ousiqwq/dsh-file-bridge/releases/download/v0.1.2/dsh-plugin-file-bridge-0.1.2.tgz
 ```
 
 在插件管理中启用插件并刷新页面。如果运行实例尚未加载新配置，重启 DSH 后刷新。安装包见 [Releases](https://github.com/ousiqwq/dsh-file-bridge/releases)。
