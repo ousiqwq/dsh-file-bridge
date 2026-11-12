@@ -1,6 +1,6 @@
 # DSH File Bridge
 
-**简体中文** | [English](README.en.md)
+**简体中文** | [English](https://github.com/ousiqwq/dsh-file-bridge/blob/main/README.en.md)
 
 为远程浏览器中的 DeepSeek Harness 添加 **下载到本机** 按钮。文件直接保存到访问网页的设备上，与原生预览和文件列表配合使用。
 
@@ -20,23 +20,23 @@
 
 打开不支持预览的文件后，可直接选择 **下载到本机**。
 
-![无法预览的文件也可下载到当前设备](docs/images/download.png)
+![无法预览的文件也可下载到当前设备](https://raw.githubusercontent.com/ousiqwq/dsh-file-bridge/main/docs/images/download.png)
 
 ### 预览与下载
 
 在原生预览中阅读文档，同时使用顶部工具栏的下载按钮。
 
-![原生 Markdown 预览与工具栏下载按钮](docs/images/preview.png)
+![原生 Markdown 预览与工具栏下载按钮](https://raw.githubusercontent.com/ousiqwq/dsh-file-bridge/main/docs/images/preview.png)
 
-## 安装
+## 一键安装
 
-已验证 DeepSeek Harness **0.2.1-rc.3 / 0.2.1-rc.5 / 0.2.2-rc.2** 的 Web profile。
+支持 DeepSeek Harness **0.2.1-rc.3 / 0.2.1-rc.5 / 0.2.2-rc.2** 的 Web profile。
 
 ```bash
-dsh plugin --profile web add https://github.com/ousiqwq/dsh-file-bridge/releases/download/v0.2.0/dsh-plugin-file-bridge-0.2.0.tgz
+dsh plugin --profile web add dsh-plugin-file-bridge
 ```
 
-在插件管理中启用插件并刷新页面。如果运行实例尚未加载新配置，重启 DSH 后刷新。安装包见 [Releases](https://github.com/ousiqwq/dsh-file-bridge/releases)。
+在插件管理中启用插件并刷新页面。如果运行实例尚未加载新配置，重启 DSH 后刷新。也可以从 [Releases](https://github.com/ousiqwq/dsh-file-bridge/releases) 下载安装包。
 
 ## 使用
 
@@ -71,8 +71,8 @@ npm pack
 DSH_TEST_URL=http://your-harness-host:3080 npm run test:browser
 ```
 
-可通过 `PLAYWRIGHT_MODULE` 和 `PLAYWRIGHT_CHROMIUM_EXECUTABLE` 指定已有浏览器工具。检查覆盖下载、原生预览、错误重试和响应式布局。
+可通过 `PLAYWRIGHT_MODULE` 和 `PLAYWRIGHT_CHROMIUM_EXECUTABLE` 指定已有浏览器工具。
 
 ## 许可证
 
-[MIT](LICENSE) © 2026 osiqwq
+[MIT](https://github.com/ousiqwq/dsh-file-bridge/blob/main/LICENSE) © 2026 osiqwq

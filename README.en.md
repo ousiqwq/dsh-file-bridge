@@ -1,6 +1,6 @@
 # DSH File Bridge
 
-[简体中文](README.md) | **English**
+[简体中文](https://github.com/ousiqwq/dsh-file-bridge/blob/main/README.md) | **English**
 
 Add a **Download to this device** action to DeepSeek Harness in a remote browser. Files are saved on the device viewing the page, alongside Harness's native previews and file lists.
 
@@ -20,23 +20,23 @@ The interface uses DSH native i18n and follows language changes immediately. Chi
 
 Choose **下载到本机 (Download to this device)** even when the file cannot be previewed.
 
-![Download an unsupported file to the current device](docs/images/download.png)
+![Download an unsupported file to the current device](https://raw.githubusercontent.com/ousiqwq/dsh-file-bridge/main/docs/images/download.png)
 
 ### Preview and download
 
 Read a document in its native viewer and download it from the toolbar.
 
-![Native Markdown preview and toolbar download action](docs/images/preview.png)
+![Native Markdown preview and toolbar download action](https://raw.githubusercontent.com/ousiqwq/dsh-file-bridge/main/docs/images/preview.png)
 
-## Installation
+## One-command installation
 
-Verified with the Web profile of DeepSeek Harness **0.2.1-rc.3 / 0.2.1-rc.5 / 0.2.2-rc.2**.
+Supports the Web profile of DeepSeek Harness **0.2.1-rc.3 / 0.2.1-rc.5 / 0.2.2-rc.2**.
 
 ```bash
-dsh plugin --profile web add https://github.com/ousiqwq/dsh-file-bridge/releases/download/v0.2.0/dsh-plugin-file-bridge-0.2.0.tgz
+dsh plugin --profile web add dsh-plugin-file-bridge
 ```
 
-Enable the plugin in the plugin manager and refresh the page. If the running instance has not loaded the new configuration, restart DSH and refresh. Packages are available from [Releases](https://github.com/ousiqwq/dsh-file-bridge/releases).
+Enable the plugin in the plugin manager and refresh the page. If the running instance has not loaded the new configuration, restart DSH and refresh. You can also download packages from [Releases](https://github.com/ousiqwq/dsh-file-bridge/releases).
 
 ## Usage
 
@@ -71,8 +71,8 @@ Browser checks require an accessible Harness instance and Playwright/Chromium:
 DSH_TEST_URL=http://your-harness-host:3080 npm run test:browser
 ```
 
-Set `PLAYWRIGHT_MODULE` and `PLAYWRIGHT_CHROMIUM_EXECUTABLE` to reuse existing browser tools. Checks cover downloads, native previews, retries, and responsive layouts.
+Set `PLAYWRIGHT_MODULE` and `PLAYWRIGHT_CHROMIUM_EXECUTABLE` to reuse existing browser tools.
 
 ## License
 
-[MIT](LICENSE) © 2026 osiqwq
+[MIT](https://github.com/ousiqwq/dsh-file-bridge/blob/main/LICENSE) © 2026 osiqwq
