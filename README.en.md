@@ -8,6 +8,16 @@ Package: `dsh-plugin-file-bridge`.
 
 The interface uses DSH native i18n and follows language changes immediately. Chinese and English dictionaries are included; other interface languages use the native English fallback.
 
+## One-command installation
+
+Supports the Web profile of DeepSeek Harness **0.2.1-rc.3 / 0.2.1-rc.5 / 0.2.2-rc.2**.
+
+```bash
+dsh plugin --profile web add dsh-plugin-file-bridge
+```
+
+Enable the plugin in the plugin manager and refresh the page. If the running instance has not loaded the new configuration, restart DSH and refresh. You can also download packages from [Releases](https://github.com/ousiqwq/dsh-file-bridge/releases).
+
 ## Features
 
 - **Toolbar downloads:** open a file and use the download icon in the preview toolbar.
@@ -27,16 +37,6 @@ Choose **Download to this device** even when the file cannot be previewed.
 Read a document in its native viewer and download it from the toolbar.
 
 ![Native Markdown preview and toolbar download action](https://raw.githubusercontent.com/ousiqwq/dsh-file-bridge/main/docs/images/preview.en.png?v=0.2.1)
-
-## One-command installation
-
-Supports the Web profile of DeepSeek Harness **0.2.1-rc.3 / 0.2.1-rc.5 / 0.2.2-rc.2**.
-
-```bash
-dsh plugin --profile web add dsh-plugin-file-bridge
-```
-
-Enable the plugin in the plugin manager and refresh the page. If the running instance has not loaded the new configuration, restart DSH and refresh. You can also download packages from [Releases](https://github.com/ousiqwq/dsh-file-bridge/releases).
 
 ## Usage
 
