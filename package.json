@@ -1,6 +1,6 @@
 {
   "name": "dsh-plugin-file-bridge",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Download files to the current browser from DeepSeek Harness, alongside its native previews",
   "type": "module",
   "exports": {

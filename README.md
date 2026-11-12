@@ -11,7 +11,7 @@
 ## 功能
 
 - **预览工具栏下载**：打开文件后，点击右侧工具栏的下载图标。
-- **无法预览的文件也能下载**：ZIP、XPI 等文件的提示区提供下载按钮。
+- **无法预览的文件也能下载**：无法预览的文件在提示区提供下载按钮。
 - **保留文件内容与名称**：支持二进制文件、中文名、空格与大文件流式传输。
 - **原生预览继续使用**：文档、图片、表格等沿用 Harness 已有的预览能力。
 - **原生界面样式**：按钮、图标、提示和深浅主题与 Harness 保持一致。
@@ -20,13 +20,13 @@
 
 打开不支持预览的文件后，可直接选择 **下载到本机**。
 
-![无法预览的文件也可下载到当前设备](https://raw.githubusercontent.com/ousiqwq/dsh-file-bridge/main/docs/images/download.png)
+![无法预览的文件也可下载到当前设备](https://raw.githubusercontent.com/ousiqwq/dsh-file-bridge/main/docs/images/download.png?v=0.2.1)
 
 ### 预览与下载
 
 在原生预览中阅读文档，同时使用顶部工具栏的下载按钮。
 
-![原生 Markdown 预览与工具栏下载按钮](https://raw.githubusercontent.com/ousiqwq/dsh-file-bridge/main/docs/images/preview.png)
+![原生 Markdown 预览与工具栏下载按钮](https://raw.githubusercontent.com/ousiqwq/dsh-file-bridge/main/docs/images/preview.png?v=0.2.1)
 
 ## 一键安装
 
