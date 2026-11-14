@@ -9,3 +9,5 @@ Soul Complete 注入原先会移除 PTC 的 tools:ptc-only 和 tools:sdk 提示�
 The npx installation command is tested with the official @deepseek-ai/dsh@0.2.2-rc.2 CLI plus temporary pnpm@11.28.5, including a clean isolated profile installation. It never upgrades the running host implicitly. Published plugin archives exclude test results, local operation backups, persona libraries, memories, credentials and conversation data.
 
 “兼容”保留预设自身的能力边界，不表示为极简添加标准工具，也不表示自定义隔离注册表或外部 ACP 后端均已验证。旧版本的历史兼容范围见 package.json peerDependencies；本次四模式实测对应上述 rc.2。
+
+标准与 PTC 的优先、替换、追加共六种组合补测通过：模型收到启用 Skill 目录，人设及记忆仍在系统上下文中，实际 Skill/SDK 调用读取完整正文；禁用后目录隐藏且强制调用被拒绝。PTC 没有丢掉可用能力，只将工具调用入口改为 run_code 与生成的 SDK。

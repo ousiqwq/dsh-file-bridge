@@ -33,9 +33,11 @@ dsh plugin --profile web add dsh-plugin-file-bridge
 | 预设 | Capability Desk | Soul Desk | File Bridge |
 | --- | --- | --- | --- |
 | 标准 `standard` | Skill/MCP 规则、目录及调用拦截有效 | 三种注入方式、记忆与子代理规则有效 | 文件下载及权限校验有效 |
-| PTC `ptc` | SDK 中隐藏禁用工具，嵌套调用仍受拦截 | 保留 `run_code` 协议与工具 SDK，记忆可从 SDK 调用 | 同样有效，与工具调用形式无关 |
+| PTC `ptc` | 可用 Skill 正常注入；启用的工具保留在 SDK 中，仅隐藏并拦截禁用项 | 保留 `run_code` 协议与工具 SDK，记忆可从 SDK 调用 | 同样有效，与工具调用形式无关 |
 | 极简 `minimal` | 规则仍有效；不会额外添加 Skill 加载、编辑或子代理工具 | 人设与记忆有效，保留预设原有工具边界 | 同样有效 |
 | 创造 `cordis` | Skill/MCP 规则有效，不移除原生创造工具 | 三种注入方式、记忆与子代理规则有效 | 同样有效 |
+
+PTC 与标准模式都保留可用 Skill 目录、人设和记忆。Skill 完整说明仍在加载后进入上下文；PTC 通过 `run_code` 调用 SDK，标准模式直接调用工具。已实测两种模式与“优先／替换／追加”的六种组合，启用项可加载，禁用项不可强行调用。
 
 极简模式没有原生 Skill 加载器或子代理，启用某项 Skill 不会为该预设补装这些工具。全局插件仍可提供自己的记忆或 MCP 工具。子代理策略以 Soul 的设置为准，默认不使用人设；复用派出者需明确配置。Soul 的“替换”模式替换预设提示词正文，但保留执行器协议/SDK、工具 schema 和原生运行上下文；希望保留原有任务说明时使用“优先”或“追加”。自定义预设若隔离或替换底层注册表、外部 ACP 后端，不在本次统一保证范围。
 
@@ -53,13 +55,15 @@ dsh plugin --profile web add dsh-plugin-file-bridge
 
 打开不支持预览的文件后，可直接选择 **下载到本机**。
 
-![无法预览的文件也可下载到当前设备](https://raw.githubusercontent.com/ousiqwq/dsh-file-bridge/main/docs/images/download.png?v=0.2.1)
+截图使用当前 DSH 原生预览器与隔离示例文件。
+
+![无法预览的文件也可下载到当前设备](https://raw.githubusercontent.com/ousiqwq/dsh-file-bridge/main/docs/images/download.png?v=0.2.3)
 
 ### 预览与下载
 
 在原生预览中阅读文档，同时使用顶部工具栏的下载按钮。
 
-![原生 Markdown 预览与工具栏下载按钮](https://raw.githubusercontent.com/ousiqwq/dsh-file-bridge/main/docs/images/preview.png?v=0.2.1)
+![原生 Markdown 预览与工具栏下载按钮](https://raw.githubusercontent.com/ousiqwq/dsh-file-bridge/main/docs/images/preview.png?v=0.2.3)
 
 ## 使用
 
