@@ -2,7 +2,7 @@ window.__ModuleLoader__.load({
   id: 'dsh-plugin-file-bridge',
   factory: require => {
     const React = require('react'), h = React.createElement;
-    const { IconDownloadOutlineRegular, Tooltip } = require('@deepseek-ai/dsh-client-ui-primitives');
+    const { Button, Toast, IconDownloadOutlineRegular, IconWarningOutlineRegular, Tooltip } = require('@deepseek-ai/dsh-client-ui-primitives');
     const NS = 'fileBridge';
     const zh = {
       download: '下载到本机', preparing: '正在准备下载…', started: '已交给浏览器下载，请查看下载列表',
@@ -24,12 +24,7 @@ window.__ModuleLoader__.load({
     };
     const css = `
 .dfb-action{position:relative;display:inline-flex;flex:none;align-self:center;align-items:center;max-width:100%;font-family:var(--dsw-font-family);color:var(--dsw-alias-label-primary)}
-.dfb-button{box-sizing:border-box;display:inline-flex;flex:none;align-items:center;justify-content:center;width:28px;height:28px;padding:6px;border:0;border-radius:var(--dsw-radius-sm);background:transparent;color:var(--dsw-alias-label-secondary);font:inherit;line-height:1;cursor:pointer}
-.dfb-button:hover:not(:disabled),.dfb-button:focus-visible{color:var(--dsw-alias-label-primary);background:var(--dsw-alias-interactive-bg-hover)}
-.dfb-button:disabled{cursor:default}.dfb-button svg{width:15px;height:15px;flex:none}
-.dfb-action[data-expanded] .dfb-button{width:auto;height:36px;gap:6px;padding:6px 14px;border:.5px solid var(--dsw-alias-border-l2);border-radius:var(--dsw-radius-md);color:var(--dsw-alias-label-primary);font-size:14px;line-height:16px;white-space:nowrap}
-.dfb-action[data-expanded] .dfb-button svg{width:18px;height:18px}
-.dfb-error{position:absolute;z-index:40;top:calc(100% + 6px);right:0;width:max-content;max-width:min(260px,65vw);padding:8px 10px;border:1px solid var(--dsw-alias-border-l2,#555);border-radius:8px;background:var(--dsw-alias-bg-module-platform,#292a2b);color:var(--dsw-alias-label-primary,#fff);font-size:12px;line-height:1.5;overflow-wrap:anywhere;box-shadow:0 4px 16px #0003}
+.dfb-button{flex:none;max-width:100%}.dfb-icon-button{width:28px;padding:0}
 .dfb-live{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 `;
     function DownloadAction({ sessionId, absolutePath, t, expanded = false }) {
@@ -67,11 +62,11 @@ window.__ModuleLoader__.load({
       }
       return h('span', { className: 'dfb-action', 'data-expanded': expanded || undefined },
         h(Tooltip, { portal: true, label: busy ? t('preparing') : t('download'), side: 'bottom', delayMs: 500 },
-          h('button', { className: 'dfb-button', type: 'button', onClick: download, disabled: busy || !sessionId,
-            'aria-label': t('download'), 'aria-busy': busy },
-            h(IconDownloadOutlineRegular, { size: expanded ? 18 : 15 }), expanded && h('span', null, busy ? t('preparing') : t('download')))),
+          h(Button, { variant:expanded?'outline':'ghost',size:expanded?'md':'sm',className: expanded?'dfb-button':'dfb-button dfb-icon-button', onClick: download, disabled: busy || !sessionId,
+            icon:h(IconDownloadOutlineRegular,{size:16}),'aria-label': t('download'), 'aria-busy': busy },
+            expanded && h('span', null, busy ? t('preparing') : t('download')))),
         h('span', { className: 'dfb-live', role: 'status', 'aria-live': 'polite' }, message ? t(message) : ''),
-        error && h('span', { className: 'dfb-error', role: 'alert' }, t(error)));
+        error && h(Toast, {key:sessionId+':'+absolutePath+':'+error,text:t(error),icon:h(IconWarningOutlineRegular,{size:16}),holdMs:6000,onDone:()=>setError('')}));
     }
     return {
       inject: ['slots', 'locale'],

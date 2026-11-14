@@ -12,11 +12,34 @@
 
 支持 DeepSeek Harness **0.2.1-rc.3 / 0.2.1-rc.5 / 0.2.2-rc.2** 的 Web profile。
 
+通过 **npx** 安装（Node.js 26，无需全局安装 dsh 或 pnpm）：
+
+```bash
+npx --yes --package=@deepseek-ai/dsh@0.2.2-rc.2 --package=pnpm@11.28.5 dsh plugin --profile web add dsh-plugin-file-bridge@latest
+```
+
+在运行 DSH 的主机上，用原实例相同的账户和 `DSH_HOME` 执行。命令固定本轮验证的官方 DSH CLI，插件安装最新版；`web` 是目标 profile。已安装 DSH CLI 时也可使用：
+
 ```bash
 dsh plugin --profile web add dsh-plugin-file-bridge
 ```
 
 在插件管理中启用插件并刷新页面。如果运行实例尚未加载新配置，重启 DSH 后刷新。也可以从 [Releases](https://github.com/ousiqwq/dsh-file-bridge/releases) 下载安装包。
+
+## Agent 预设兼容性
+
+本轮在 DeepSeek Harness **0.2.2-rc.2** 的原生 Web 服务中，使用真实会话、工具执行器和文件接口逐项验证：
+
+| 预设 | Capability Desk | Soul Desk | File Bridge |
+| --- | --- | --- | --- |
+| 标准 `standard` | Skill/MCP 规则、目录及调用拦截有效 | 三种注入方式、记忆与子代理规则有效 | 文件下载及权限校验有效 |
+| PTC `ptc` | SDK 中隐藏禁用工具，嵌套调用仍受拦截 | 保留 `run_code` 协议与工具 SDK，记忆可从 SDK 调用 | 同样有效，与工具调用形式无关 |
+| 极简 `minimal` | 规则仍有效；不会额外添加 Skill 加载、编辑或子代理工具 | 人设与记忆有效，保留预设原有工具边界 | 同样有效 |
+| 创造 `cordis` | Skill/MCP 规则有效，不移除原生创造工具 | 三种注入方式、记忆与子代理规则有效 | 同样有效 |
+
+极简模式没有原生 Skill 加载器或子代理，启用某项 Skill 不会为该预设补装这些工具。全局插件仍可提供自己的记忆或 MCP 工具。子代理策略以 Soul 的设置为准，默认不使用人设；复用派出者需明确配置。Soul 的“替换”模式替换预设提示词正文，但保留执行器协议/SDK、工具 schema 和原生运行上下文；希望保留原有任务说明时使用“优先”或“追加”。自定义预设若隔离或替换底层注册表、外部 ACP 后端，不在本次统一保证范围。
+
+详见 [四模式验收](docs/AGENT-PRESET-COMPATIBILITY.md)。
 
 ## 功能
 

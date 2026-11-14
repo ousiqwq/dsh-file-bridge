@@ -94,6 +94,17 @@ try {
   }
   await page.setViewportSize({ width: 1440, height: 950 });
   await page.screenshot({ path: join(output, 'browser.png') });
+  for (const theme of ['dark', 'light']) {
+    await page.emulateMedia({ colorScheme: theme });
+    await open('中文 下载.xpi');
+    const button=page.locator('.dfb-action[data-expanded]:visible .dfb-button');
+    await button.focus();
+    const [keyboardDownload]=await Promise.all([page.waitForEvent('download'),page.keyboard.press('Enter')]);
+    assert.equal(await keyboardDownload.failure(),null);
+    assert.equal(keyboardDownload.suggestedFilename(),'中文 下载.xpi');
+    await page.screenshot({path:join(output,'native-'+theme+'.png')});
+  }
+  report.darkAndLight=true;report.keyboardDownload=true;
   // Errors must be visible and retry must work without reloading the page.
   await page.route('**/api/file-bridge.prepare', route => route.fulfill({ status: 409, contentType: 'application/json', body: '{"error":"changed"}' }));
   await page.locator('.dfb-action[data-expanded]:visible .dfb-button').click();

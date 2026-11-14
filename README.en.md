@@ -12,11 +12,34 @@ The interface uses DSH native i18n and follows language changes immediately. Chi
 
 Supports the Web profile of DeepSeek Harness **0.2.1-rc.3 / 0.2.1-rc.5 / 0.2.2-rc.2**.
 
+Install with **npx** (Node.js 26; no global dsh or pnpm installation required):
+
+```bash
+npx --yes --package=@deepseek-ai/dsh@0.2.2-rc.2 --package=pnpm@11.28.5 dsh plugin --profile web add dsh-plugin-file-bridge@latest
+```
+
+Run this on the DSH host with the same account and `DSH_HOME` as your existing instance. The command pins the verified official CLI and installs the latest plugin into the `web` profile. With the DSH CLI already installed, you can also use:
+
 ```bash
 dsh plugin --profile web add dsh-plugin-file-bridge
 ```
 
 Enable the plugin in the plugin manager and refresh the page. If the running instance has not loaded the new configuration, restart DSH and refresh. You can also download packages from [Releases](https://github.com/ousiqwq/dsh-file-bridge/releases).
+
+## Agent preset compatibility
+
+Verified against the native DeepSeek Harness **0.2.2-rc.2** Web service using real sessions, executors and file APIs:
+
+| Preset | Capability Desk | Soul Desk | File Bridge |
+| --- | --- | --- | --- |
+| Standard `standard` | Skill/MCP catalogs, rules and invocation guards work | All three injection modes, memories and child policies work | Download and access checks work |
+| PTC `ptc` | Disabled tools are omitted from the SDK and nested calls remain guarded | Preserves the `run_code` protocol and SDK; memory tools work through SDK calls | Works independently of tool-call style |
+| Minimal `minimal` | Rules work without adding a Skill loader, editor or subagent tools | Persona and memory support preserves the preset's existing tool boundary | Works |
+| Creation `cordis` | Skill/MCP rules preserve native creation tools | All three injection modes, memories and child policies work | Works |
+
+Minimal does not ship a Skill loader or subagents; enabling a Skill does not install those tools into that preset. Global plugins can still contribute their own memory or MCP tools. Soul child policies default to no persona; parent reuse is explicit. Soul's Complete mode replaces the preset's prompt body while preserving executor protocol/SDK sections, tool schemas and native runtime context. Use Priority or Append to keep the original task instructions. Custom presets that isolate or replace underlying registries, and external ACP backends, need separate verification.
+
+See [four-preset acceptance](docs/AGENT-PRESET-COMPATIBILITY.md).
 
 ## Features
 
